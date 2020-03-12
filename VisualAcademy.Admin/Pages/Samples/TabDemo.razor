@@ -1,0 +1,84 @@
+﻿@page "/Samples/TabDemo"
+
+<h3>TabDemo</h3>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">탭1...</div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">탭2...</div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">탭3...</div>
+</div>
+
+<hr />
+
+<ul class="nav nav-tabs">
+    <li class="nav-item" @onclick="@(()=>TabClicked(1))">
+        <a class="nav-link @tabOneActive">Home</a>
+    </li>
+    <li class="nav-item" @onclick="@(()=>TabClicked(2))">
+        <a class="nav-link @tabTwoActive">Profile</a>
+    </li>
+    <li class="nav-item" @onclick="@(()=>TabClicked(3))">
+        <a class="nav-link @tabThreeActive">Contact</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade @tabPanelOneActive">탭1...</div>
+    <div class="tab-pane fade @tabPanelTwoActive">탭2...</div>
+    <div class="tab-pane fade @tabPanelThreeActive">탭3...</div>
+</div>
+
+@code {
+    string tabOneActive = "active";
+    string tabTwoActive = "";
+    string tabThreeActive = "";
+
+    string tabPanelOneActive = "show active";
+    string tabPanelTwoActive = "";
+    string tabPanelThreeActive = "";
+
+    public void TabClicked(int tabId)
+    {
+        if (tabId == 1)
+        {
+            tabOneActive = "active";
+            tabTwoActive = "";
+            tabThreeActive = "";
+
+            tabPanelOneActive = "show active";
+            tabPanelTwoActive = "";
+            tabPanelThreeActive = "";
+        }
+        else if (tabId == 2)
+        {
+            tabOneActive = "";
+            tabTwoActive = "active";
+            tabThreeActive = "";
+
+            tabPanelOneActive = "";
+            tabPanelTwoActive = "show active";
+            tabPanelThreeActive = "";
+        }
+        else if (tabId == 3)
+        {
+            tabOneActive = "";
+            tabTwoActive = "";
+            tabThreeActive = "active";
+
+            tabPanelOneActive = "";
+            tabPanelTwoActive = "";
+            tabPanelThreeActive = "show active";
+        }
+
+    }
+}

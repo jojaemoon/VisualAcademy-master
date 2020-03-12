@@ -1,0 +1,33 @@
+﻿@page "/Blank"
+@inject IModalService Modal
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+
+<h1>Hello, world!</h1>
+
+Welcome to Blazored Modal.
+
+<button @onclick="@ShowModal" class="btn btn-primary">View Movies</button>
+
+@code {
+    void ShowModal()
+    {
+         Modal.OnClose += ModalClosed;
+         //Modal.Show();
+    }
+    void ModalClosed(ModalResult modalResult)
+    {
+        if (modalResult.Cancelled)
+        {
+            Console.WriteLine("Modal was cancelled");
+        }
+        else
+        {
+            Console.WriteLine(modalResult.Data);
+        }
+        Console.Write("Modal was closed by ");
+        Console.WriteLine(modalResult.ModalType);
+        
+        Modal.OnClose -= ModalClosed;
+    }
+}
